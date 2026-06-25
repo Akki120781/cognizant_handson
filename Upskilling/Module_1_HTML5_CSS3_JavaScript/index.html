@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    <style>
+        body {
+            background: #f5f8fb;
+        }
+
+        #welcomeBanner {
+            background: #0d6efd;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header id="mainHeader" class="site-header">
+        <h1 style="color: red;">Local Community Event Portal</h1>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="help.html" target="_blank">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <section id="home" class="section hero-section">
+            <div id="welcomeBanner">
+                <h2>Welcome back, resident</h2>
+                <p class="highlight">Find nearby programs, register quickly, and keep track of community updates.</p>
+                <p>Special offer: <span style="color: #ffeb3b; font-weight: bold;">Free entry for the weekend clean-up drive.</span></p>
+            </div>
+        </section>
+
+        <section id="events" class="section">
+            <h2>Upcoming Events</h2>
+            <div class="toolbar">
+                <label for="categoryFilter">Filter by category</label>
+                <select id="categoryFilter">
+                    <option value="all">All categories</option>
+                    <option value="Culture">Culture</option>
+                    <option value="Education">Education</option>
+                    <option value="Health">Health</option>
+                    <option value="Sports">Sports</option>
+                </select>
+
+                <label for="searchBox">Quick search</label>
+                <input id="searchBox" type="search" placeholder="Search by event name">
+            </div>
+            <div id="loadingSpinner" class="loading hidden">Loading events...</div>
+            <div id="eventList" class="event-grid" aria-live="polite"></div>
+            <p id="registrationSummary"></p>
+        </section>
+
+        <section id="gallery" class="section">
+            <h2>Past Event Gallery</h2>
+            <table class="gallery-table">
+                <caption>Highlights from recent community programs</caption>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img class="event-img" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=360&q=80" alt="Residents attending a community gathering" title="Community gathering" ondblclick="enlargeImage(this)">
+                            <p>Community Gathering</p>
+                        </td>
+                        <td>
+                            <img class="event-img" src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=360&q=80" alt="Workshop participants learning together" title="Learning workshop" ondblclick="enlargeImage(this)">
+                            <p>Learning Workshop</p>
+                        </td>
+                        <td>
+                            <img class="event-img" src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=360&q=80" alt="People planning local activities" title="Planning session" ondblclick="enlargeImage(this)">
+                            <p>Planning Session</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="event-img" src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=360&q=80" alt="Speaker addressing a community audience" title="Public talk" ondblclick="enlargeImage(this)">
+                            <p>Public Talk</p>
+                        </td>
+                        <td>
+                            <img class="event-img" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=360&q=80" alt="Outdoor festival lights and crowd" title="Festival evening" ondblclick="enlargeImage(this)">
+                            <p>Festival Evening</p>
+                        </td>
+                        <td>
+                            <img class="event-img" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=360&q=80" alt="Volunteers working at a table" title="Volunteer meet" ondblclick="enlargeImage(this)">
+                            <p>Volunteer Meet</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="register" class="section form-section">
+            <h2>Event Registration</h2>
+            <form id="registrationForm">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Enter your name" required autofocus>
+
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="name@example.com" required>
+
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="10 digit phone number" onblur="validatePhone()">
+                <small id="phoneError" class="error"></small>
+
+                <label for="eventDate">Preferred date</label>
+                <input id="eventDate" name="eventDate" type="date" required>
+
+                <label for="eventType">Event type</label>
+                <select id="eventType" name="eventType" onchange="showEventFee()" required>
+                    <option value="">Select an event</option>
+                    <option value="Culture" data-fee="100">Culture</option>
+                    <option value="Education" data-fee="50">Education</option>
+                    <option value="Health" data-fee="0">Health</option>
+                    <option value="Sports" data-fee="75">Sports</option>
+                </select>
+                <p id="eventFee"></p>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us anything we should know" onkeydown="countCharacters()"></textarea>
+                <small id="charCount">0 characters</small>
+
+                <div class="form-actions">
+                    <button id="registerBtn" class="cta-button" type="submit" onclick="showClickConfirmation()">Register</button>
+                    <button id="clearPreferences" type="button">Clear Preferences</button>
+                </div>
+                <output id="confirmationOutput"></output>
+                <p id="formError" class="error"></p>
+            </form>
+        </section>
+
+        <section class="section">
+            <h2>Video Invite</h2>
+            <video controls width="420" oncanplay="showVideoReadyMessage()">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p id="videoMessage"></p>
+        </section>
+
+        <section class="section">
+            <h2>Nearby Events</h2>
+            <button id="findNearbyBtn" type="button">Find Nearby Events</button>
+            <p id="locationOutput"></p>
+        </section>
+
+        <section class="section bulletin">
+            <h2>Community Bulletin</h2>
+            <p>
+                The city council is hosting programs across health, education, culture, and sports.
+                Residents are encouraged to participate, volunteer, and share feedback after every
+                event so community programs can stay aligned with resident needs.
+            </p>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>Email: events@cityportal.example</p>
+            <p class="hidden-box">This line uses visibility hidden in CSS.</p>
+            <p class="removed-box">This line uses display none in CSS.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Local Community Event Portal</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

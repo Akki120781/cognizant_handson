@@ -1,0 +1,20 @@
+[
+    {
+        "id": 101,
+        "name": "Remote Civic Design Talk",
+        "category": "Education",
+        "city": "Online",
+        "date": "2026-09-02",
+        "seats": 40,
+        "fee": 0
+    },
+    {
+        "id": 102,
+        "name": "Neighborhood Sports Day",
+        "category": "Sports",
+        "city": "Chennai",
+        "date": "2026-09-16",
+        "seats": 24,
+        "fee": 50
+    }
+]
