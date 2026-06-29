@@ -14,3 +14,7 @@
 - PL/SQL Programming
 - TDD using JUnit5 and Mockito
 - SLF4J Logging Framework
+- Spring Core and Maven
+- Spring Data JPA with Spring Boot and Hibernate
+- Spring REST using Spring Boot 3
+- Microservices with Spring Boot 3 and Spring Cloud

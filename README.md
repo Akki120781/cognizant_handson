@@ -16,6 +16,12 @@ Week_01/
   03_PL_SQL_Programming/
   04_TDD_Using_JUnit5_and_Mockito/
   05_SLF4J_Logging/
+Week_02/
+  01_Spring_Core_and_Maven/
+  02_Spring_Data_JPA_Hibernate/
+Week_03/
+  01_Spring_REST_using_Spring_Boot_3/
+  02_Microservices_with_Spring_Boot_3_and_Spring_Cloud/
 ```
 
 ## Running examples
