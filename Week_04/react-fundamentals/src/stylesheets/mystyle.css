@@ -1,0 +1,22 @@
+.score-card {
+  background: #eef6ff;
+  border: 1px solid #b7d6ff;
+  border-radius: 8px;
+  max-width: 360px;
+  padding: 16px;
+}
+
+.score-card dl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 8px;
+  margin: 0;
+}
+
+.score-card dt {
+  font-weight: 700;
+}
+
+.score-card dd {
+  margin: 0;
+}

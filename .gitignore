@@ -16,3 +16,7 @@ Thumbs.db
 # Logs
 *.log
 
+# Frontend dependencies and build outputs
+node_modules/
+dist/
+.vite/
