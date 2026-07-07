@@ -18,3 +18,5 @@
 - Spring Data JPA with Spring Boot and Hibernate
 - Spring REST using Spring Boot 3
 - Microservices with Spring Boot 3 and Spring Cloud
+- React fundamentals
+- React ES6, JSX, events, conditional rendering, and lists

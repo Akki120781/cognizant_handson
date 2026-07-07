@@ -22,6 +22,10 @@ Week_02/
 Week_03/
   01_Spring_REST_using_Spring_Boot_3/
   02_Microservices_with_Spring_Boot_3_and_Spring_Cloud/
+Week_04/
+  react-fundamentals/
+Week_05/
+  react-advanced/
 ```
 
 ## Running examples
