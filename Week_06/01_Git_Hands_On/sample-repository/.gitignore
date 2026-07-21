@@ -1,0 +1,4 @@
+# Git HOL ignored files
+*.log
+log/
+*.orig

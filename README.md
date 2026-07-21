@@ -26,6 +26,10 @@ Week_04/
   react-fundamentals/
 Week_05/
   react-advanced/
+Week_06/
+  01_Git_Hands_On/
+Week_07/
+  angular-hands-on/
 ```
 
 ## Running examples
@@ -40,3 +44,5 @@ mvn exec:java
 ```
 
 SQL scripts are grouped by module and can be executed in the matching database environment.
+
+Frontend projects can be run from their own folders after installing dependencies. The Angular portal also includes a mock API script backed by `db.json`.

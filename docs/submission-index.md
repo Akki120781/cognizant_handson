@@ -20,3 +20,5 @@
 - Microservices with Spring Boot 3 and Spring Cloud
 - React fundamentals
 - React ES6, JSX, events, conditional rendering, and lists
+- Git hands-on
+- Angular hands-on
