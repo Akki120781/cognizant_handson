@@ -1,0 +1,77 @@
+name: Verify Hands-on Projects
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  frontend:
+    name: Frontend builds and Angular tests
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Build React fundamentals
+        working-directory: Week_04/react-fundamentals
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+
+      - name: Build React advanced
+        working-directory: Week_05/react-advanced
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+
+      - name: Build and test Angular portal
+        working-directory: Week_07/angular-hands-on
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+          pnpm test
+
+  maven:
+    name: Maven unit tests
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Run Maven tests
+        shell: pwsh
+        run: |
+          $pomFiles = Get-ChildItem -Recurse -Filter pom.xml | Where-Object { $_.FullName -notmatch "\\target\\" }
+          foreach ($pom in $pomFiles) {
+            $projectDir = Split-Path -Parent $pom.FullName
+            Write-Host "Testing $projectDir"
+            Push-Location $projectDir
+            try {
+              mvn -q test
+            }
+            finally {
+              Pop-Location
+            }
+          }

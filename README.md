@@ -46,3 +46,13 @@ mvn exec:java
 SQL scripts are grouped by module and can be executed in the matching database environment.
 
 Frontend projects can be run from their own folders after installing dependencies. The Angular portal also includes a mock API script backed by `db.json`.
+
+## Verification
+
+Use the root verification script for a local check across Maven and frontend projects:
+
+```powershell
+.\scripts\verify-hands-on.ps1
+```
+
+Additional notes are available in `docs/verification-guide.md` and `docs/project-map.md`.
